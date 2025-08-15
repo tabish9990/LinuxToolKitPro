@@ -414,31 +414,35 @@ main(){
     esac
   done
 
-  if [[ -n $run_cmd ]]; then
+ if [ -n "$run_cmd" ]; then
     case "$run_cmd" in
-      net) util_check_internet ;;
-      sys) util_sys_info ;;
-      disk) util_disk_report ;;
-      mem) util_mem_top ;;
-      cpu) util_cpu_monitor ;;
-      wifi) util_wifi_signal ;;
-      git) util_git_helper ;;
-      pkg) util_pkg_health ;;
-      kill) util_kill_process ;;
-      shred) util_shred ;;
-      sum) util_checksum ;;
-      temp) util_temp_sensors ;;
-      bat) util_battery ;;
-      find) util_find_files ;;
-      url) util_url_health ;;
-      backup) util_backup ;;
-      clean) util_cleanup_cache ;;
-      export) export_report "${fmt:-txt}" ;;
-      update) self_update ;;
-      *) cecho RED "Unknown run command: $run_cmd"; return 1 ;;
+        net) util_check_internet ;;
+        sys) util_sys_info ;;
+        disk) util_disk_report ;;
+        mem) util_mem_top ;;
+        cpu) util_cpu_monitor ;;
+        wifi) util_wifi_signal ;;
+        git) util_git_helper ;;
+        pkg) util_pkg_health ;;
+        kill) util_kill_process ;;
+        shred) util_shred ;;
+        checksum) util_checksum ;;
+        temp) util_temp_sensors ;;
+        bat) util_battery ;;
+        find) util_find_files ;;
+        url) util_url_health ;;
+        backup) util_backup ;;
+        clean) util_cleanup_cache ;;
+        export) export_report "${fmt:=txt}" ;;
+        update) self_update ;;
+        *) echo RED "Unknown run command: $run_cmd"; return 1 ;;
     esac
     return 0
-  fi
+fi
+
+menu
+main "$@"
+
 
   menu
 }
