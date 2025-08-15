@@ -442,9 +442,3 @@ fi
 
 menu
 main "$@"
-
-
-  menu
-}
-
-main "$@"
